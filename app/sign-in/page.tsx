@@ -28,7 +28,7 @@ export default async function SignInPage() {
         />
         <div className="absolute inset-0 bg-black/80 z-0" />
 
-        {/* Left Side */}
+        {/* Left Side - Branding */}
         <div className="hidden lg:flex flex-col items-center justify-center p-12 lg:p-20 relative z-10">
           <div className="text-center mb-12">
             <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-500 text-slate-900 rounded-2xl flex items-center justify-center font-black text-2xl mx-auto mb-4 shadow-2xl">
@@ -59,21 +59,23 @@ export default async function SignInPage() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 hover:border-yellow-400/50 transition-all"
+                className="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 hover:border-yellow-400/50 transition-all duration-300"
               >
                 <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2" />
                 <div>
                   <h3 className="font-black text-lg text-white mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-slate-300 text-sm">{item.desc}</p>
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Right Side */}
+        {/* Right Side - Sign In */}
         <div className="flex flex-col items-center justify-center py-12 px-6 lg:px-16 relative z-10">
           <div className="w-full max-w-md">
             <div className="text-center mb-10">
@@ -85,15 +87,15 @@ export default async function SignInPage() {
               </p>
             </div>
 
-            {/* ✅ FIXED: no invalid props */}
+            {/* ✅ FIXED: SignIn has NO custom props */}
             <div className="bg-white/15 backdrop-blur-2xl border border-white/30 rounded-3xl p-10 shadow-2xl">
-              <SignIn providers={["google", "github"]} />
+              <SignIn />
             </div>
 
             <div className="mt-8 flex flex-col gap-4 text-center">
               <Link
                 href="/sign-up"
-                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-slate-900 font-black py-4 px-8 rounded-xl text-lg shadow-xl transition-all"
+                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-slate-900 font-black py-4 px-8 rounded-xl text-lg shadow-xl transition-all duration-300"
               >
                 Create Account
               </Link>

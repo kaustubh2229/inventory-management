@@ -1,8 +1,25 @@
-import { SignIn } from "@stackframe/stack";
+"use client";
+
+import { SignIn, useUser } from "@stackframe/stack";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowLeft, Shield, CheckCircle } from "lucide-react";
 
 export default function SignInPage() {
+  const { user, isLoaded } = useUser();
+  const router = useRouter();
+
+  // ✅ CLIENT-SIDE REDIRECT (FIX)
+  useEffect(() => {
+    if (isLoaded && user) {
+      router.replace("/dashboard");
+    }
+  }, [isLoaded, user, router]);
+
+  // Prevent flash
+  if (!isLoaded) return null;
+
   return (
     <>
       <link
@@ -48,9 +65,9 @@ export default function SignInPage() {
               </p>
             </div>
 
-            {/* ✅ THIS IS THE KEY FIX */}
+            {/* Sign In */}
             <div className="bg-white/15 backdrop-blur-2xl border border-white/30 rounded-3xl p-10 shadow-2xl">
-              <SignIn automaticRedirect />
+              <SignIn />
             </div>
 
             <div className="mt-8 flex flex-col gap-4 text-center">

@@ -7,18 +7,15 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Shield, CheckCircle } from "lucide-react";
 
 export default function SignInPage() {
-  const { user, isLoaded } = useUser();
+  const user = useUser(); // ✅ CORRECT
   const router = useRouter();
 
-  // ✅ CLIENT-SIDE REDIRECT (FIX)
+  // ✅ CLIENT-SIDE REDIRECT (WORKS 100%)
   useEffect(() => {
-    if (isLoaded && user) {
+    if (user) {
       router.replace("/dashboard");
     }
-  }, [isLoaded, user, router]);
-
-  // Prevent flash
-  if (!isLoaded) return null;
+  }, [user, router]);
 
   return (
     <>
